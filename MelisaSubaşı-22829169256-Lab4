@@ -1,0 +1,65 @@
+//Name : Melisa Subaşı
+// id: 22829169256
+// lab 4 assigment
+//design.sv
+
+module dff (
+  input clk,       // Clock input
+  input reset,     // Reset input
+  input d,         // Data input
+  output reg q,    // Output
+  output reg qb    // Complement of q
+);
+  // Output qb is the complement of q
+  assign qb = ~q;
+
+  // Sequential logic for D flip-flop
+  always @(posedge clk or posedge reset)
+  begin
+    if (reset) begin
+      q <= 1'b0;   // Reset state
+    end else begin
+      q <= d;      // Store input data on positive clock edge
+    end
+  end
+endmodule
+
+----------------------------------------------------------------------------------------------------------------------
+
+//Name : Melisa Subaşı
+// id: 22829169256
+// lab 4 assigment
+//testbench.sv
+
+module test;
+  reg clk, reset, d, q, qb;
+
+  // Instantiate dff module
+  dff DFF(.clk(clk), .reset(reset), .d(d), .q(q), .qb(qb));
+
+  // Testbench logic
+  initial begin
+    $dumpfile("dump.vcd");
+    $dumpvars(1);
+
+    $display("Reset flop.");
+    clk = 0;
+    reset = 1;
+    d = 1'bx;
+    display;
+
+    $display("Release reset.");
+    d = 1;
+    reset = 0;
+    display;
+
+    $display("Toggle clk.");
+    clk = 1;
+    display;
+  end
+
+  // Display task for showing signal values
+  task display;
+    #1 $display("d:%0h, q:%0h, qb:%0h", d, q, qb);
+  endtask
+endmodule
