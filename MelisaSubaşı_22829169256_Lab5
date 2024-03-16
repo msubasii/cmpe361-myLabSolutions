@@ -1,3 +1,8 @@
+//Name : Melisa Subaşı
+// id: 22829169256
+// lab 5 assigment
+//design.sv
+
 module dff (input clk, input reset,
   input d, output reg q, output reg qb);
 
@@ -17,7 +22,10 @@ module dff (input clk, input reset,
 endmodule
 
 ------------------------------------------------------------------------------------------------------------------------
-
+//Name : Melisa Subaşı
+// id: 22829169256
+// lab 5 assigment
+//testbench.sv
 
 module test;
 
