@@ -1,0 +1,64 @@
+module dff (input clk, input reset,
+  input d, output reg q, output reg qb);
+
+  always @(posedge clk or posedge reset)
+  begin
+    if (reset) begin
+      q <= 1'b1;
+    end else begin
+      q <= d;
+    end
+  end
+
+  // Complement output (qb)
+  always @(posedge clk or posedge reset)
+    qb <= ~q;
+
+endmodule
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+module test;
+
+  reg clk, reset, d, q, qb;
+
+  // Instantiate the D flip-flop module
+  dff DFF(.clk(clk), .reset(reset),
+          .d(d), .q(q), .qb(qb));
+
+  initial begin
+    $dumpfile("dump.vcd");
+    $dumpvars(1);
+
+    // Initialize signals
+    clk = 0;
+    reset = 1;
+    d = 1'bx;
+    
+    // Display initial state
+    display;
+
+    // Release reset
+    $display("Release reset.");
+    d = 1;
+    reset = 0;
+    display;
+
+    // Toggle clk
+    $display("Toggle clk.");
+    clk = 1;
+    display;
+    
+    // Add more test cases as needed
+
+    // Terminate simulation
+    $finish;
+  end
+
+  task display;
+    #1 $display("d:%0h, q:%0h, qb:%0h",
+      d, q, qb);
+  endtask
+
+endmodule
