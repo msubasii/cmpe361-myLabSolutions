@@ -1,5 +1,7 @@
-Here i upload my Computer Organization class lab solutions.
-For the labs used software language is MIPS Asembly language.
-And the used app is :
-"ModelSim™-Altera Starter Edition
-MARS-MIPS Simulator"
+Description:
+This repository contains solutions for Computer Organization lab assignments. It primarily focuses on MIPS Assembly language programming, offering valuable examples for students learning low-level programming concepts.
+
+Key Features:
+
+MIPS Assembly code examples.
+Comprehensive lab solutions and reports.
